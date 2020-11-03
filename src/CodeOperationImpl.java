@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
+import javafx.util.Pair;
+
 public class CodeOperationImpl implements CodeOperation {
   private Map<String, String> prefixMap;
 
@@ -26,15 +28,19 @@ public class CodeOperationImpl implements CodeOperation {
    */
   private void generateDictionary(String message, int symbolNum) {
     Map<String, Integer> freqMap = generateFrequencyMap(message);
-    PriorityQueue<Map.Entry<String, Integer>> queue = new
-            PriorityQueue<Map.Entry<String, Integer>>(new strComparator());
+    PriorityQueue<Pair<String, Integer>> queue = new
+            PriorityQueue<Pair<String, Integer>>(new strComparator());
     for (Map.Entry<String, Integer> entry : freqMap.entrySet()) {
-      queue.offer(entry);
+      queue.offer(new Pair<>(entry.getKey(), entry.getValue()));
     }
     while (queue.size() >= symbolNum) {
+      String newKey = "";
+      Integer newValue = 0;
       for (int i = 0; i < symbolNum; i++) {
-        Map.Entry<String, Integer> curr = queue.poll();
+        Pair<String, Integer> curr = queue.poll();
         String currStr = curr.getKey();
+        newKey += curr.getKey();
+        newValue += curr.getValue();
         for (char c : currStr.toCharArray()) {
           String key = "" + c;
           if (!prefixMap.containsKey(key)) {
@@ -44,17 +50,37 @@ public class CodeOperationImpl implements CodeOperation {
           }
         }
       }
+      Pair<String, Integer> pair = new Pair<String, Integer>(newKey, newValue);
+      queue.offer(pair);
     }
 
+    int n = queue.size();
+    String newKey = "";
+    for (int i = 0; i < n; i++) {
+      Pair<String, Integer> pair = queue.poll();
+      String currStr = pair.getKey();
+      newKey += pair.getKey();
+      for (char c : currStr.toCharArray()) {
+        String key = "" + c;
+        if (!prefixMap.containsKey(key)) {
+          prefixMap.put(key, "" + symbolNum);
+        } else {
+          prefixMap.put(key, "" + symbolNum + prefixMap.get(key));
+        }
+      }
+    }
+    for (char c: newKey.toCharArray()) {
+      prefixMap.put(newKey, "0" + prefixMap.get(newKey));
+    }
   }
 
   /**
    * Class for setting the order of the priority queue by the ascending count of characters and then
    * by the Alphabetical order if the count of character are the same for different characters.
    */
-  class strComparator implements Comparator<Map.Entry<String, Integer>> {
+  class strComparator implements Comparator<Pair<String, Integer>> {
     @Override
-    public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+    public int compare(Pair<String, Integer> o1, Pair<String, Integer> o2) {
       if (o1.getValue() - o2.getValue() != 0) {
         return o1.getValue() - o2.getValue();
       }
