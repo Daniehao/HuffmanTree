@@ -3,12 +3,14 @@
  * prefix code or insert a prefix code to the tree's root.
  */
 public class PrefixTree {
+  Node root;
 
-  public Node insert(Character c, String code, int symbolNum) {
-    Node root = new trieElementNode(symbolNum);
-    for (int i = 0; i < code.length(); i++) {
-      root.add(code.charAt(i));
-    }
+  public PrefixTree(int symbolNum) {
+    root = new trieLeafNode(null, symbolNum);
+  }
+
+  public void insert(Character c, String code) {
+    root = root.add(c, code, 0);
   }
 
   public Character lookUp() {

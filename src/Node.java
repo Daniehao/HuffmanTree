@@ -9,6 +9,8 @@ public interface Node {
    * @param symbol The data of the new node to be added.
    * @return The current node.
    */
-  Node add(Character symbol);
+  Node add(Character symbol, String code, int position);
+
+  public void addChildren(int index, Node child);
 
 }

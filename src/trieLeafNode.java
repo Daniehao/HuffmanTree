@@ -2,7 +2,7 @@
  * Class for the leaf Node of prefix tree which implements the Node interface.
  */
 public class trieLeafNode implements Node {
-  private final Character data;
+  private Character data;
   private int symbolNum;
 
   /**
@@ -14,8 +14,19 @@ public class trieLeafNode implements Node {
   }
 
   @Override
-  public Node add(Character symbol) {
-    return new trieElementNode(symbolNum);
+  public Node add(Character symbol, String code, int position) {
+    if (position == code.length()) {
+      data = symbol;
+      return this;
+    }
+    Node node = new trieElementNode(symbolNum);
+    node.addChildren(ConvertToDecimal.convert(code.charAt(position)), add(symbol, code,
+            position + 1));
+    return node;
   }
 
+  @Override
+  public void addChildren(int index, Node child) {
+    return;
+  }
 }
