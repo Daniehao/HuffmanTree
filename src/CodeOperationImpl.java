@@ -1,4 +1,6 @@
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.PriorityQueue;
 
@@ -22,7 +24,26 @@ public class CodeOperationImpl implements CodeOperation {
    */
   private void generateDictionary(String message, int symbolNum) {
     Map<String, Integer> freqMap = generateFrequencyMap(message);
-    PriorityQueue<>
+    PriorityQueue<Map.Entry<String, Integer>> queue = new
+            PriorityQueue<Map.Entry<String, Integer>>(new strComparator());
+    for (Map.Entry<String, Integer> entry: freqMap.entrySet()) {
+      queue.offer(entry);
+    }
+
+  }
+
+  /**
+   * Class for setting the order of the priority queue by the ascending count of characters and then
+   * by the Alphabetical order if the count of character are the same for different characters.
+   */
+  class strComparator implements Comparator<Map.Entry<String, Integer>> {
+    @Override
+    public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+      if (o1.getValue() - o2.getValue() != 0 ) {
+        return o1.getValue() - o2.getValue();
+      }
+      return o1.getKey().compareTo(o2.getKey());
+    }
   }
 
   /**
