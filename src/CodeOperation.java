@@ -11,6 +11,7 @@ public interface CodeOperation {
 
   /**
    * Decode a coded string to a normal string with characters.
+   *
    * @param codeStr The coded string.
    * @return The normal string.
    */
@@ -18,7 +19,8 @@ public interface CodeOperation {
 
   /**
    * Encode a normal string to a coded string.
-   * @param  uncodeStr The uncoded normal string.
+   *
+   * @param uncodeStr The uncoded normal string.
    * @return The coded string.
    */
   public String Encode(String uncodeStr);
