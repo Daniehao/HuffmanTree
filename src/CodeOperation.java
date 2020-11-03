@@ -2,7 +2,7 @@
  * The interface includes operations to generate code dictionary and prefix tree and also it has
  * decode and encode operations with a input string.
  */
-public interface CodeOperation<T> {
+public interface CodeOperation {
 
   /**
    * Generate the prefix tree from the prefix code map.
