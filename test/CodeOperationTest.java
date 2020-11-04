@@ -64,7 +64,10 @@ public class CodeOperationTest {
   }
 
   @Test
-  public void test(){
-
+  public void testDecode(){
+    codeOperation.generatePrefixTree(2);
+    codeOperation.decode("011111010011000000111001001100010011110");
+  assertEquals("For here?",
+          codeOperation.decode("011111010011000000111001001100010011110"));
   }
 }
