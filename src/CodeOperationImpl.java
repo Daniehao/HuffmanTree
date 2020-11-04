@@ -59,7 +59,6 @@ public class CodeOperationImpl implements CodeOperation {
       Pair<String, Integer> pair = new Pair<String, Integer>(newKey, newValue);
       queue.offer(pair);
     }
-
     int n = queue.size();
     for (int i = 0; i < n; i++) {
       Pair<String, Integer> pair = queue.poll();
