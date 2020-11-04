@@ -7,7 +7,7 @@ public interface CodeOperation {
   /**
    * Generate the prefix tree from the prefix code map.
    */
-  public void generatePrefixTree();
+  public void generatePrefixTree(int SymbolNum);
 
   /**
    * Decode a coded string to a normal string with characters.

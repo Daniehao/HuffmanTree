@@ -23,7 +23,8 @@ public class trieElementNode implements Node {
     } else {
       node = children[ConvertToDecimal.convert(code.charAt(position))];
     }
-    children[ConvertToDecimal.convert(code.charAt(position))] = node.add(symbol, code, position + 1);
+    children[ConvertToDecimal.convert(code.charAt(position))] = node.add(symbol, code,
+            position + 1);
     return this;
   }
 

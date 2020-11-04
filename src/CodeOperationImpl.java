@@ -6,7 +6,7 @@ import java.util.PriorityQueue;
 import javafx.util.Pair;
 
 public class CodeOperationImpl implements CodeOperation {
-  private Map<String, String> prefixMap;
+  private Map<Character, String> prefixMap;
 
   /**
    * Constructor for the CodeOperationImpl class.
@@ -42,11 +42,10 @@ public class CodeOperationImpl implements CodeOperation {
         newKey += curr.getKey();
         newValue += curr.getValue();
         for (char c : currStr.toCharArray()) {
-          String key = "" + c;
-          if (!prefixMap.containsKey(key)) {
-            prefixMap.put(key, "" + symbolNum);
+          if (!prefixMap.containsKey(c)) {
+            prefixMap.put(c, "" + symbolNum);
           } else {
-            prefixMap.put(key, "" + symbolNum + prefixMap.get(key));
+            prefixMap.put(c, "" + symbolNum + prefixMap.get(c));
           }
         }
       }
@@ -61,16 +60,15 @@ public class CodeOperationImpl implements CodeOperation {
       String currStr = pair.getKey();
       newKey += pair.getKey();
       for (char c : currStr.toCharArray()) {
-        String key = "" + c;
-        if (!prefixMap.containsKey(key)) {
-          prefixMap.put(key, "" + symbolNum);
+        if (!prefixMap.containsKey(c)) {
+          prefixMap.put(c, "" + symbolNum);
         } else {
-          prefixMap.put(key, "" + symbolNum + prefixMap.get(key));
+          prefixMap.put(c, "" + symbolNum + prefixMap.get(c));
         }
       }
     }
     for (char c: newKey.toCharArray()) {
-      prefixMap.put(newKey, "0" + prefixMap.get(newKey));
+      prefixMap.put(c, "0" + prefixMap.get(newKey));
     }
   }
 
@@ -108,8 +106,11 @@ public class CodeOperationImpl implements CodeOperation {
   }
 
   @Override
-  public void generatePrefixTree() {
-
+  public void generatePrefixTree(int SymbolNum) {
+    PrefixTree tree = new PrefixTree(SymbolNum);
+    for (Character c : prefixMap.keySet()) {
+      tree.insert(c, prefixMap.get(c));
+    }
   }
 
   @Override
