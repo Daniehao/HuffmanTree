@@ -120,7 +120,12 @@ public class CodeOperationImpl implements CodeOperation {
 
   @Override
   public String Encode(String uncodeStr) {
-    return null;
+      String ans = "";
+      for (int i = 0; i < uncodeStr.length(); i++) {
+        char key = uncodeStr.charAt(i);
+        ans += prefixMap.get(key);
+      }
+      return ans;
   }
 }
 
