@@ -13,4 +13,8 @@ public interface Node {
 
   public void addChildren(int index, Node child);
 
+  public Node getChildNode(int index);
+
+  public Character getData();
+
 }

@@ -7,7 +7,7 @@ import javafx.util.Pair;
 
 public class CodeOperationImpl implements CodeOperation {
   private Map<Character, String> prefixMap;
-
+  private PrefixTree tree;
   /**
    * Constructor for the CodeOperationImpl class.
    *
@@ -111,11 +111,12 @@ public class CodeOperationImpl implements CodeOperation {
     for (Character c : prefixMap.keySet()) {
       tree.insert(c, prefixMap.get(c));
     }
+    this.tree = tree;
   }
 
   @Override
   public String Decode(String codeStr) {
-    return null;
+    return tree.lookUp(codeStr);
   }
 
   @Override

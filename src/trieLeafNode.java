@@ -29,4 +29,14 @@ public class trieLeafNode implements Node {
   public void addChildren(int index, Node child) {
     return;
   }
+
+  @Override
+  public Node getChildNode(int index) {
+    return null;
+  }
+
+  @Override
+  public Character getData() {
+    return data;
+  }
 }

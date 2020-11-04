@@ -13,7 +13,18 @@ public class PrefixTree {
     root = root.add(c, code, 0);
   }
 
-  public Character lookUp() {
-
+  public String lookUp(String codeStr) {
+    String rst = "";
+    Node currNode = root;
+    for (int i = 0; i < codeStr.length(); i++) {
+      Node child = currNode.getChildNode(codeStr.charAt(i) - '0');
+      if (child instanceof trieLeafNode) {
+        rst += child.getData();
+        currNode = root;
+      } else {
+        currNode = child;
+      }
+    }
+    return rst;
   }
 }
