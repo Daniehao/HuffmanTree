@@ -33,4 +33,5 @@ public interface Node {
    */
   public Character getData();
 
+  public void dfs(StringBuilder sb, StringBuilder currPath);
 }

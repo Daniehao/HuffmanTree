@@ -56,4 +56,15 @@ public class CodeOperationTest {
     prefixMap.put('o', "010");
     assertEquals(codeOperation.getPrefixMap(), prefixMap);
   }
+
+  @Test
+  public void testEncode() {
+    assertEquals("011111010011000000111001001100010011110",
+            codeOperation.encode("For here?"));
+  }
+
+  @Test
+  public void test(){
+
+  }
 }

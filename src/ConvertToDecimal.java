@@ -8,4 +8,14 @@ public class ConvertToDecimal {
     }
     return c - 'A' + 10;
   }
+
+  public static char convertToChar(int num) {
+    char c;
+    if (num >= 10) {
+      c = (char)('a' + (num - 10));
+    }else{
+      c = (char)('0' + num);
+    }
+    return c;
+  }
 }

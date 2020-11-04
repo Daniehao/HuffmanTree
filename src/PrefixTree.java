@@ -44,4 +44,13 @@ public class PrefixTree {
     }
     return rst;
   }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    StringBuilder currPath = new StringBuilder();
+    root.dfs(sb, currPath);
+    sb.delete(sb.length() - 2, sb.length());
+    return sb.toString();
+  }
 }

@@ -53,6 +53,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/test/PrefixTreeTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
       </map>
     </option>
   </component>

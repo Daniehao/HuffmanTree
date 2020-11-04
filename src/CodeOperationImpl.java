@@ -117,12 +117,12 @@ public class CodeOperationImpl implements CodeOperation {
   }
 
   @Override
-  public String Decode(String codeStr) {
+  public String decode(String codeStr) {
     return tree.lookUp(codeStr);
   }
 
   @Override
-  public String Encode(String uncodeStr) {
+  public String encode(String uncodeStr) {
     String ans = "";
     for (int i = 0; i < uncodeStr.length(); i++) {
       char key = uncodeStr.charAt(i);

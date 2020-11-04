@@ -42,4 +42,9 @@ public class trieLeafNode implements Node {
   public Character getData() {
     return data;
   }
+
+  @Override
+  public void dfs(StringBuilder sb, StringBuilder currPath) {
+    sb.append(currPath).append(": ").append(data).append(", ");
+  }
 }

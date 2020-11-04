@@ -44,4 +44,14 @@ public class trieElementNode implements Node {
   public Character getData() {
     return null;
   }
+
+  @Override
+  public void dfs(StringBuilder sb, StringBuilder currPath) {
+    for (int i = 0; i < symbolNum; i++) {
+      if (children[i] != null) {
+        children[i].dfs(sb, currPath.append(ConvertToDecimal.convertToChar(i)));
+        currPath.delete(currPath.length() - 1, currPath.length());
+      }
+    }
+  }
 }

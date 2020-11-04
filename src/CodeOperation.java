@@ -17,7 +17,7 @@ public interface CodeOperation {
    * @param codeStr The coded string.
    * @return The normal string.
    */
-  public String Decode(String codeStr);
+  public String decode(String codeStr);
 
   /**
    * Encode a normal string to a coded string.
@@ -25,7 +25,7 @@ public interface CodeOperation {
    * @param uncodeStr The uncoded normal string.
    * @return The coded string.
    */
-  public String Encode(String uncodeStr);
+  public String encode(String uncodeStr);
 
   /**
    * Get the prefix map with a character and code relationship.
