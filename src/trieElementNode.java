@@ -1,6 +1,5 @@
 /**
  * Class for the non-leaf Node of prefix tree which implements the Node interface.
- *
  */
 public class trieElementNode implements Node {
   private Node[] children;
@@ -8,6 +7,7 @@ public class trieElementNode implements Node {
 
   /**
    * Constructor for trieElementNode.
+   *
    * @param symbolNum
    */
   public trieElementNode(int symbolNum) {

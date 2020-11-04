@@ -5,9 +5,13 @@ import java.util.PriorityQueue;
 
 import javafx.util.Pair;
 
+/**
+ * The class implements the CodeOperation interface.
+ */
 public class CodeOperationImpl implements CodeOperation {
   private Map<Character, String> prefixMap;
   private PrefixTree tree;
+
   /**
    * Constructor for the CodeOperationImpl class.
    *
@@ -67,7 +71,7 @@ public class CodeOperationImpl implements CodeOperation {
         }
       }
     }
-    for (char c: newKey.toCharArray()) {
+    for (char c : newKey.toCharArray()) {
       prefixMap.put(c, "0" + prefixMap.get(newKey));
     }
   }
@@ -121,12 +125,12 @@ public class CodeOperationImpl implements CodeOperation {
 
   @Override
   public String Encode(String uncodeStr) {
-      String ans = "";
-      for (int i = 0; i < uncodeStr.length(); i++) {
-        char key = uncodeStr.charAt(i);
-        ans += prefixMap.get(key);
-      }
-      return ans;
+    String ans = "";
+    for (int i = 0; i < uncodeStr.length(); i++) {
+      char key = uncodeStr.charAt(i);
+      ans += prefixMap.get(key);
+    }
+    return ans;
   }
 }
 
