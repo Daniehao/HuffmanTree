@@ -34,7 +34,7 @@ public class PrefixTree {
     String rst = "";
     Node currNode = root;
     for (int i = 0; i < codeStr.length(); i++) {
-      Node child = currNode.getChildNode(codeStr.charAt(i) - '0');
+      Node child = currNode.getChildNode(ConvertToDecimal.convert(codeStr.charAt(i)));
       if (child instanceof trieLeafNode) {
         rst += child.getData();
         currNode = root;

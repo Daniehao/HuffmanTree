@@ -9,6 +9,9 @@ public class trieLeafNode implements Node {
    * The constructor for the trieLeafNode.
    */
   public trieLeafNode(Character data, int symbolNum) {
+    if (symbolNum <= 1) {
+      throw new IllegalArgumentException("The number of symbol cannot be less or equals 1.");
+    }
     this.data = data;
     this.symbolNum = symbolNum;
   }

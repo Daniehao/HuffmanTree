@@ -11,6 +11,9 @@ public class trieElementNode implements Node {
    * @param symbolNum
    */
   public trieElementNode(int symbolNum) {
+    if (symbolNum <= 1) {
+      throw new IllegalArgumentException("The number of symbol cannot be less or equals 1.");
+    }
     children = new Node[symbolNum];
     this.symbolNum = symbolNum;
   }
