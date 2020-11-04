@@ -16,11 +16,14 @@ public class CodeOperationImpl implements CodeOperation {
    * Constructor for the CodeOperationImpl class.
    *
    * @param message   The message of user's input.
-   * @param SymbolNum The number of symbols required.
+   * @param symbolNum The number of symbols required.
    */
-  public CodeOperationImpl(String message, int SymbolNum) {
+  public CodeOperationImpl(String message, int symbolNum) {
+    if (symbolNum <= 1) {
+      throw new IllegalArgumentException("The number of symbol cannot be less or equals 1.");
+    }
     prefixMap = new HashMap<>();
-    generateDictionary(message, SymbolNum);
+    generateDictionary(message, symbolNum);
   }
 
   /**
@@ -47,9 +50,9 @@ public class CodeOperationImpl implements CodeOperation {
         newValue += curr.getValue();
         for (char c : currStr.toCharArray()) {
           if (!prefixMap.containsKey(c)) {
-            prefixMap.put(c, "" + symbolNum);
+            prefixMap.put(c, "" + i);
           } else {
-            prefixMap.put(c, "" + symbolNum + prefixMap.get(c));
+            prefixMap.put(c, "" + i + prefixMap.get(c));
           }
         }
       }
@@ -58,21 +61,16 @@ public class CodeOperationImpl implements CodeOperation {
     }
 
     int n = queue.size();
-    String newKey = "";
     for (int i = 0; i < n; i++) {
       Pair<String, Integer> pair = queue.poll();
       String currStr = pair.getKey();
-      newKey += pair.getKey();
       for (char c : currStr.toCharArray()) {
         if (!prefixMap.containsKey(c)) {
-          prefixMap.put(c, "" + symbolNum);
+          prefixMap.put(c, "" + i);
         } else {
-          prefixMap.put(c, "" + symbolNum + prefixMap.get(c));
+          prefixMap.put(c, "" + i + prefixMap.get(c));
         }
       }
-    }
-    for (char c : newKey.toCharArray()) {
-      prefixMap.put(c, "0" + prefixMap.get(newKey));
     }
   }
 

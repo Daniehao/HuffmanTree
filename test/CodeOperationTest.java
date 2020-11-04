@@ -2,6 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,8 +15,21 @@ public class CodeOperationTest {
   }
 
   @Test
+  public void testConstructor(){
+    codeOperation = new CodeOperationImpl("For here or to go?", 2);
+    assertEquals(true, true);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testInvalidConstructor() {
+    codeOperation = new CodeOperationImpl("For here or to go?", 1);
+    codeOperation = new CodeOperationImpl("For here or to go?", 0);
+    codeOperation = new CodeOperationImpl("For here or to go?", -1);
+  }
+
+  @Test
   public void testFreqMap() {
-    HashMap<String, Integer> map = new HashMap<>();
+    Map<String, Integer> map = new HashMap<>();
     map.put(" ", 4);
     map.put("r", 3);
     map.put("t", 1);
@@ -30,6 +44,16 @@ public class CodeOperationTest {
 
   @Test
   public void testPrefixMap() {
-    System.out.println(codeOperation.getPrefixMap());
+    Map<Character, String> prefixMap = new HashMap<>();
+    prefixMap.put(' ', "000");
+    prefixMap.put('r', "0110");
+    prefixMap.put('t', "01110");
+    prefixMap.put('e', "0010");
+    prefixMap.put('F', "011111");
+    prefixMap.put('g', "00110");
+    prefixMap.put('h', "00111");
+    prefixMap.put('?', "011110");
+    prefixMap.put('o', "010");
+    assertEquals(codeOperation.getPrefixMap(), prefixMap);
   }
 }
