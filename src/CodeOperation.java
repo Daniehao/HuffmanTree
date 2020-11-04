@@ -1,3 +1,5 @@
+import java.util.Map;
+
 /**
  * The interface includes operations to generate code dictionary and prefix tree and also it has
  * decode and encode operations with a input string.
@@ -24,4 +26,16 @@ public interface CodeOperation {
    * @return The coded string.
    */
   public String Encode(String uncodeStr);
+
+  /**
+   * Get the prefix map with a character and code relationship.
+   * @return The prefix map.
+   */
+  public Map<Character, String> getPrefixMap();
+
+  /**
+   * Get the frequency map with a Character String to frequency relationship.
+   * @return The frequency map of each character in the input message.
+   */
+  public Map<String, Integer> getFreqMap(String message);
 }

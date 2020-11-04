@@ -132,6 +132,16 @@ public class CodeOperationImpl implements CodeOperation {
     }
     return ans;
   }
+
+  @Override
+  public Map<Character, String> getPrefixMap() {
+    return prefixMap;
+  }
+
+  @Override
+  public Map<String, Integer> getFreqMap(String message) {
+    return generateFrequencyMap(message);
+  }
 }
 
 
