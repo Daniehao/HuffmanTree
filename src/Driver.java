@@ -15,25 +15,38 @@ import java.util.stream.Stream;
 public class Driver {
   public static void instruction() {
     System.out.println("Instructions by the following: ");
+    System.out.println("Step 0: Input 0 for writing message to screen, 1 for building a new file" +
+            "to write a message. Input message for writing in keyboard; Input your file path and " +
+            "message if you choose to write message in a new file.");
     System.out.println("Step 1: Input 0 for reading from keyboard, 1 for reading from file.");
-    System.out.println("Step 2: Input your message if you choose keyboard reading option " +
-            "in step 1. Input your full file path if you choose file reading option in step 1.");
-    System.out.println("Step 3: Input 2 for binary encoding, 16 for hexadecimal encoding.");
-
-
+    System.out.println("Step 2: Input 2 for binary encoding, 16 for hexadecimal encoding.");
+    System.out.println("Step 3: 0: Input 0 for writing encoded message to screen, 1 for writing " +
+            "the encoded message into a new file. Input your file path and message if you choose " +
+            "to write encoded message to a new file.");
+    System.out.println("Step 4: Decode message.");
   }
 
-  public static void main(String[] args) throws URISyntaxException, MalformedURLException {
+  public static void main(String[] args) throws URISyntaxException, IOException {
     Scanner sc = new Scanner(System.in);
     String message = "";
     int symbolNum = 0;
+    System.out.println("0. Choose the way to write a message: ");
+    int writeWay = sc.nextInt();
+    System.out.println("Input your message: ");
+    if (writeWay == 1) {
+      String content = sc.nextLine();
+      System.out.println("Input the path file for this new file: ");
+      String path = sc.nextLine();
+      Files.write(Paths.get(path), content.getBytes());
+    } else {
+      message = sc.nextLine();
+    }
     System.out.println("1. Choose the way to read a message: ");
     int readWay = sc.nextInt();
     if (readWay == 0) {
-      System.out.println("2. Input your message: ");
-      message = sc.nextLine();
+      System.out.println(message);
     } else {
-      System.out.println("2. Input your file path: ");
+      System.out.println("Input your file path: ");
       String filePath = sc.nextLine();
       StringBuilder sb = new StringBuilder();
       try (Stream<String> stream = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)) {
@@ -43,8 +56,20 @@ public class Driver {
       }
       message = sb.toString();
     }
-    System.out.println("3. Choose binary encoding or hexadecimal encoding: ");
+    System.out.println("2. Choose binary encoding or hexadecimal encoding: ");
     symbolNum = sc.nextInt();
+    CodeOperation codeOperation = new CodeOperationImpl(message, symbolNum);
+    System.out.println("3. Choose the method to write the encoded message: ");
+    message = codeOperation.encode(message);
+    int writeWayEncode = sc.nextInt();
+    if (writeWayEncode == 1) {
+      System.out.println("Input your message: ");
+      String content = sc.nextLine();
+      System.out.println("Input the path file for this new file: ");
+      String path = sc.nextLine();
+      Files.write(Paths.get(path), content.getBytes());
+    }
+    System.out.println("4. Decode message.");
 
   }
 }
