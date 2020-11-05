@@ -21,7 +21,6 @@ public class trieElementNode implements Node {
   @Override
   public Node add(Character symbol, String code, int position) {
     Node node;
-    System.out.println(code);
     if (children[ConvertToDecimal.convert(code.charAt(position))] == null) {
       node = new trieLeafNode(null, symbolNum);
     } else {
