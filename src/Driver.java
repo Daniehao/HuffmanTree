@@ -23,6 +23,9 @@ public class Driver {
             "the encoded message into a new file. Input your file path if you choose " +
             "to write encoded message to a new file.");
     System.out.println("Step 4: Decode message.");
+    System.out.print("\n");
+    System.out.print("\n");
+    System.out.print("\n");
   }
 
   public static void main(String[] args) throws URISyntaxException, IOException {
