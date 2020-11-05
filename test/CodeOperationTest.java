@@ -8,11 +8,14 @@ import static org.junit.Assert.assertEquals;
 
 public class CodeOperationTest {
   private CodeOperation codeOperation;
+  private CodeOperation codeOperation2;
 
   @Before
   public void setup() {
     codeOperation = new CodeOperationImpl("For here or to go?",
             2);
+    codeOperation2 = new CodeOperationImpl("For here or to go?",
+            3);
   }
 
   @Test
@@ -59,16 +62,43 @@ public class CodeOperationTest {
   }
 
   @Test
+  public void testPrefixMap2() {
+    Map<Character, String> prefixMap = new HashMap<>();
+    prefixMap.put(' ', "022");
+    prefixMap.put('r', "021");
+    prefixMap.put('t', "001");
+    prefixMap.put('e', "002");
+    prefixMap.put('F', "0201");
+    prefixMap.put('g', "0202");
+    prefixMap.put('h', "000");
+    prefixMap.put('?', "0200");
+    prefixMap.put('o', "01");
+    assertEquals(codeOperation2.getPrefixMap(), prefixMap);
+  }
+
+  @Test
   public void testEncode() {
     assertEquals("011111010011000000111001001100010011110",
             codeOperation.encode("For here?"));
   }
 
   @Test
+  public void testEncode2() {
+    assertEquals("0201010210220000020210020200",
+            codeOperation2.encode("For here?"));
+  }
+
+  @Test
   public void testDecode(){
     codeOperation.generateHuffmanTree(2);
-    codeOperation.decode("011111010011000000111001001100010011110");
   assertEquals("For here?",
           codeOperation.decode("011111010011000000111001001100010011110"));
+  }
+
+  @Test
+  public void testDecode2() {
+    codeOperation2.generateHuffmanTree(3);
+    assertEquals("For here?",
+            codeOperation2.decode("0201010210220000020210020200"));
   }
 }
