@@ -21,7 +21,7 @@ public class Driver {
     System.out.println("Step 1: Input 0 for reading from keyboard, 1 for reading from file.");
     System.out.println("Step 2: Input 2 for binary encoding, 16 for hexadecimal encoding.");
     System.out.println("Step 3: 0: Input 0 for writing encoded message to screen, 1 for writing " +
-            "the encoded message into a new file. Input your file path and message if you choose " +
+            "the encoded message into a new file. Input your file path if you choose " +
             "to write encoded message to a new file.");
     System.out.println("Step 4: Decode message.");
   }
@@ -32,17 +32,17 @@ public class Driver {
     int symbolNum = 0;
     System.out.println("0. Choose the way to write a message: ");
     int writeWay = sc.nextInt();
+    sc.nextLine();
     System.out.println("Input your message: ");
+    message = sc.nextLine();
     if (writeWay == 1) {
-      String content = sc.nextLine();
       System.out.println("Input the path file for this new file: ");
       String path = sc.nextLine();
-      Files.write(Paths.get(path), content.getBytes());
-    } else {
-      message = sc.nextLine();
+      Files.write(Paths.get(path), message.getBytes());
     }
     System.out.println("1. Choose the way to read a message: ");
     int readWay = sc.nextInt();
+    sc.nextLine();
     if (readWay == 0) {
       System.out.println(message);
     } else {
@@ -58,18 +58,29 @@ public class Driver {
     }
     System.out.println("2. Choose binary encoding or hexadecimal encoding: ");
     symbolNum = sc.nextInt();
+    sc.nextLine();
     CodeOperation codeOperation = new CodeOperationImpl(message, symbolNum);
     System.out.println("3. Choose the method to write the encoded message: ");
     message = codeOperation.encode(message);
     int writeWayEncode = sc.nextInt();
+    sc.nextLine();
     if (writeWayEncode == 1) {
-      System.out.println("Input your message: ");
-      String content = sc.nextLine();
       System.out.println("Input the path file for this new file: ");
       String path = sc.nextLine();
-      Files.write(Paths.get(path), content.getBytes());
+      Files.write(Paths.get(path), message.getBytes());
+    } else {
+      System.out.println(message);
     }
-    System.out.println("4. Decode message.");
-
+    System.out.println("4. Choose the method to write the encoded message: ");
+    message = codeOperation.decode(message);
+    int writeWayDecode = sc.nextInt();
+    sc.nextLine();
+    if (writeWayDecode == 1) {
+      System.out.println("Input the path file for this new file: ");
+      String path = sc.nextLine();
+      Files.write(Paths.get(path), message.getBytes());
+    } else {
+      System.out.println(message);
+    }
   }
 }
