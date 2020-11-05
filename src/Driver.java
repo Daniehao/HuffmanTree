@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -36,9 +35,9 @@ public class Driver {
     System.out.println("Input your message: ");
     message = sc.nextLine();
     if (writeWay == 1) {
-      System.out.println("Input the path file for this new file: ");
-      String path = sc.nextLine();
-      Files.write(Paths.get(path), message.getBytes());
+      System.out.println("Input the file name: ");
+      String fileName = sc.nextLine();
+      Files.write(Paths.get(fileName), message.getBytes());
     }
     System.out.println("1. Choose the way to read a message: ");
     int readWay = sc.nextInt();
@@ -46,10 +45,10 @@ public class Driver {
     if (readWay == 0) {
       System.out.println(message);
     } else {
-      System.out.println("Input your file path: ");
-      String filePath = sc.nextLine();
+      System.out.println("Input the file name: ");
+      String fileName = sc.nextLine();
       StringBuilder sb = new StringBuilder();
-      try (Stream<String> stream = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)) {
+      try (Stream<String> stream = Files.lines(Paths.get(fileName), StandardCharsets.UTF_8)) {
         stream.forEach(sb::append);
       } catch (IOException e) {
         e.printStackTrace();
