@@ -11,6 +11,9 @@ import java.util.stream.Stream;
  * or to a file.
  */
 public class Driver {
+  /**
+   * This gives an instruction to users on how to input the options in each step.
+   */
   public static void instruction() {
     System.out.println("Instructions by the following: ");
     System.out.println("Step 0: Input 0 for writing message to screen, 1 for building a new file"
@@ -18,26 +21,36 @@ public class Driver {
             + "write a new file.");
     System.out.println("Step 1: Input 0 for reading from keyboard, 1 for reading from file.");
     System.out.println("Step 2: Input 2 for binary encoding, 16 for hexadecimal encoding.");
-    System.out.println("Step 3: Input 0 for writing encoded message to screen, 1 for writing " +
-            "the encoded message into a new file. Input your file name if you choose " +
-            "to write encoded message to a new file.");
-    System.out.println("Step 4: Input 0 for writing decoded message to screen, 1 for writing " +
-            "the decoded message into a new file. Input your file name if you choose " +
-            "to write decoded message to a new file.");
+    System.out.println("Step 3: Input 0 for writing encoded message to screen, 1 for writing "
+            +
+            "the encoded message into a new file. Input your file name if you choose "
+            + "to write encoded message to a new file.");
+    System.out.println("Step 4: Input 0 for writing decoded message to screen, 1 for writing "
+            + "the decoded message into a new file. Input your file name if you choose "
+            + "to write decoded message to a new file.");
     System.out.println("Step 5: Input the file name for the prefix encoding text file.");
     System.out.print("\n");
     System.out.print("\n");
   }
 
+  /**
+   * The main method enables user to choose reading or writing messages from either keyboard or from
+   * a file, and it enables users to encode and decode by a input string by binary or hexadecimal.
+   * The original message, decoded message, encoded message, and prefix encoding relationship could
+   * be either be shown on screen or be output into a file.
+   *
+   * @param args The input arguments for main method.
+   * @throws IOException Throws a failure in input & output operations.
+   */
   public static void main(String[] args) throws IOException {
     instruction();
     Scanner sc = new Scanner(System.in);
-    String message = "";
-    int symbolNum = 0;
     System.out.println("0. Choose the way to write a message: ");
-    int writeWay = sc.nextInt();
+    int writeWay = 0;
+    writeWay = sc.nextInt();
     sc.nextLine();
     System.out.println("Input your message: ");
+    String message = "";
     message = sc.nextLine();
     if (writeWay == 1) {
       System.out.println("Input the file name: ");
@@ -61,6 +74,7 @@ public class Driver {
       message = sb.toString();
     }
     System.out.println("2. Choose binary encoding or hexadecimal encoding: ");
+    int symbolNum = 0;
     symbolNum = sc.nextInt();
     sc.nextLine();
     CodeOperation codeOperation = new CodeOperationImpl(message, symbolNum);

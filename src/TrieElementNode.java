@@ -1,16 +1,16 @@
 /**
  * Class for the non-leaf Node of Huffman tree which implements the Node interface.
  */
-public class trieElementNode implements Node {
+public class TrieElementNode implements Node {
   private Node[] children;
   private int symbolNum;
 
   /**
    * Constructor for trieElementNode.
    *
-   * @param symbolNum
+   * @param symbolNum The number of encoding symbols.
    */
-  public trieElementNode(int symbolNum) {
+  public TrieElementNode(int symbolNum) {
     if (symbolNum <= 1) {
       throw new IllegalArgumentException("The number of symbol cannot be less or equals 1.");
     }
@@ -22,7 +22,7 @@ public class trieElementNode implements Node {
   public Node add(Character symbol, String code, int position) {
     Node node;
     if (children[ConvertToDecimal.convert(code.charAt(position))] == null) {
-      node = new trieLeafNode(null, symbolNum);
+      node = new TrieLeafNode(null, symbolNum);
     } else {
       node = children[ConvertToDecimal.convert(code.charAt(position))];
     }
@@ -43,7 +43,7 @@ public class trieElementNode implements Node {
 
   @Override
   public char getData() {
-    return (char)0;
+    return (char) 0;
   }
 
   @Override

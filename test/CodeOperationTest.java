@@ -25,7 +25,8 @@ public class CodeOperationTest {
   @Test
   public void testConstructor() {
     codeOperation = new CodeOperationImpl("For here or to go?", 2);
-    assertEquals(true, true);
+    Map<Character, String> map = new HashMap<>();
+    assertEquals("For here or to go?", codeOperation.getMessage());
   }
 
   @Test(expected = IllegalArgumentException.class)

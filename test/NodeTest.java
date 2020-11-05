@@ -12,28 +12,28 @@ public class NodeTest {
 
   @Before
   public void setup() {
-    leaf = new trieLeafNode('c', 2);
-    element = new trieElementNode(2);
+    leaf = new TrieLeafNode('c', 2);
+    element = new TrieElementNode(2);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testTrieElementNodeConstructor() {
-    Node elementNode = new trieElementNode(-1);
-    Node elementNode1 = new trieElementNode(0);
-    Node elementNode2 = new trieElementNode(1);
+    Node elementNode = new TrieElementNode(-1);
+    Node elementNode1 = new TrieElementNode(0);
+    Node elementNode2 = new TrieElementNode(1);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testTrieLeafNodeConstructor() {
-    Node elementNode = new trieLeafNode('a', -1);
-    Node elementNode1 = new trieLeafNode('b', 0);
-    Node elementNode2 = new trieLeafNode('c', 1);
+    Node elementNode = new TrieLeafNode('a', -1);
+    Node elementNode1 = new TrieLeafNode('b', 0);
+    Node elementNode2 = new TrieLeafNode('c', 1);
   }
 
   @Test
   public void testAddChildren() {
-    Node child = new trieLeafNode('x', 2);
-    Node root = new trieElementNode(2);
+    Node child = new TrieLeafNode('x', 2);
+    Node root = new TrieElementNode(2);
     root.addChildren(1, child);
     assertEquals(child, root.getChildNode(1));
     assertEquals('x', root.getChildNode(1).getData());

@@ -1,9 +1,9 @@
+import javafx.util.Pair;
+
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
-
-import javafx.util.Pair;
 
 /**
  * The class implements the CodeOperation interface.
@@ -11,6 +11,7 @@ import javafx.util.Pair;
 public class CodeOperationImpl implements CodeOperation {
   private Map<Character, String> prefixMap;
   private HuffmanTree tree;
+  private String message;
 
   /**
    * Constructor for the CodeOperationImpl class.
@@ -25,6 +26,7 @@ public class CodeOperationImpl implements CodeOperation {
     prefixMap = new HashMap<>();
     generateDictionary(message, symbolNum);
     generateHuffmanTree(symbolNum);
+    this.message = message;
   }
 
   /**
@@ -37,7 +39,7 @@ public class CodeOperationImpl implements CodeOperation {
   private void generateDictionary(String message, int symbolNum) {
     Map<String, Integer> freqMap = generateFrequencyMap(message);
     PriorityQueue<Pair<String, Integer>> queue = new
-            PriorityQueue<Pair<String, Integer>>(new strComparator());
+            PriorityQueue<Pair<String, Integer>>(new StrComparator());
     for (Map.Entry<String, Integer> entry : freqMap.entrySet()) {
       queue.offer(new Pair<>(entry.getKey(), entry.getValue()));
     }
@@ -96,7 +98,7 @@ public class CodeOperationImpl implements CodeOperation {
    * Class for setting the order of the priority queue by the ascending count of characters and then
    * by the Alphabetical order if the count of character are the same for different characters.
    */
-  class strComparator implements Comparator<Pair<String, Integer>> {
+  class StrComparator implements Comparator<Pair<String, Integer>> {
     @Override
     public int compare(Pair<String, Integer> o1, Pair<String, Integer> o2) {
       if (o1.getValue() - o2.getValue() != 0) {
@@ -128,7 +130,7 @@ public class CodeOperationImpl implements CodeOperation {
   /**
    * Generate the Huffman tree from the prefix code map.
    */
-  private void generateHuffmanTree(int symbolNum){
+  private void generateHuffmanTree(int symbolNum) {
     HuffmanTree tree = new HuffmanTree(symbolNum);
     for (Character c : prefixMap.keySet()) {
       tree.insert(c, prefixMap.get(c));
@@ -168,7 +170,7 @@ public class CodeOperationImpl implements CodeOperation {
   public String getPrefixCoding() {
     StringBuilder sb = new StringBuilder();
     sb.append("The following shows the prefix code for each character in the message").append("\n");
-    for (Character key: prefixMap.keySet()) {
+    for (Character key : prefixMap.keySet()) {
       if (key == ' ') {
         sb.append("sp").append(": ").append(prefixMap.get(key)).append(", ");
         continue;
@@ -178,6 +180,11 @@ public class CodeOperationImpl implements CodeOperation {
     }
     sb.delete(sb.length() - 2, sb.length());
     return sb.toString();
+  }
+
+  @Override
+  public String getMessage() {
+    return message;
   }
 }
 

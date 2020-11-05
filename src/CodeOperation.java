@@ -39,4 +39,10 @@ public interface CodeOperation {
    * @return The string of the prefix coding.
    */
   public String getPrefixCoding();
+
+  /**
+   * Get the message input by the user.
+   * @return The input message.
+   */
+  public String getMessage();
 }

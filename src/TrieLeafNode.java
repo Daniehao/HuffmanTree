@@ -1,14 +1,14 @@
 /**
  * Class for the leaf Node of the Huffman tree which implements the Node interface.
  */
-public class trieLeafNode implements Node {
+public class TrieLeafNode implements Node {
   private Character data;
   private int symbolNum;
 
   /**
    * The constructor for the trieLeafNode.
    */
-  public trieLeafNode(Character data, int symbolNum) {
+  public TrieLeafNode(Character data, int symbolNum) {
     if (symbolNum <= 1) {
       throw new IllegalArgumentException("The number of symbol cannot be less or equals 1.");
     }
@@ -22,7 +22,7 @@ public class trieLeafNode implements Node {
       data = symbol;
       return this;
     }
-    Node node = new trieElementNode(symbolNum);
+    Node node = new TrieElementNode(symbolNum);
     node.addChildren(ConvertToDecimal.convert(code.charAt(position)), add(symbol, code,
             position + 1));
     return node;

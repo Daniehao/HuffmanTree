@@ -12,7 +12,7 @@ public class HuffmanTree {
    * @param symbolNum The total number of symbols.
    */
   public HuffmanTree(int symbolNum) {
-    root = new trieLeafNode(null, symbolNum);
+    root = new TrieLeafNode(null, symbolNum);
     this.symbolNum = symbolNum;
   }
 
@@ -44,14 +44,14 @@ public class HuffmanTree {
       if (child == null) {
         throw new IllegalArgumentException("The input string is invalid!");
       }
-      if (child instanceof trieLeafNode) {
+      if (child instanceof TrieLeafNode) {
         rst += child.getData();
         currNode = root;
       } else {
         currNode = child;
       }
     }
-    if(!currNode.equals(root)) {
+    if (!currNode.equals(root)) {
       throw new IllegalArgumentException("The input string is invalid!");
     }
     return rst;

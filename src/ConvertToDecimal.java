@@ -5,6 +5,7 @@
 public class ConvertToDecimal {
   /**
    * Convert the prefix code character to a regular number.
+   *
    * @param c The prefix code character.
    * @return The
    */
@@ -12,7 +13,7 @@ public class ConvertToDecimal {
     if (c >= '0' && c <= '9') {
       return c - '0';
     }
-    if (c >= 'a' && c <= 'z'){
+    if (c >= 'a' && c <= 'z') {
       return c - 'a' + 10;
     }
     return c - 'A' + 10;
@@ -20,15 +21,16 @@ public class ConvertToDecimal {
 
   /**
    * Convert the child node index to a prefix code character.
+   *
    * @param num The child node index.
    * @return The prefix code character.
    */
   public static char convertToChar(int num) {
     char c;
     if (num >= 10) {
-      c = (char)('a' + (num - 10));
-    }else{
-      c = (char)('0' + num);
+      c = (char) ('a' + (num - 10));
+    } else {
+      c = (char) ('0' + num);
     }
     return c;
   }

@@ -22,6 +22,7 @@ public interface Node {
 
   /**
    * Return the child node based on the character value in the current prefix.
+   *
    * @param index The index to get the child node.
    * @return The child node at a position.
    */
@@ -29,13 +30,15 @@ public interface Node {
 
   /**
    * Get data value of the current node.
+   *
    * @return Data of the current node.
    */
   public char getData();
 
   /**
    * Use the deepeast-first search to traverse the Huffman tree.
-   * @param sb The string builder to store the leaves that have been traversed.
+   *
+   * @param sb       The string builder to store the leaves that have been traversed.
    * @param currPath The string builder to store the whole path from root to leaf.
    */
   public void dfs(StringBuilder sb, StringBuilder currPath);
