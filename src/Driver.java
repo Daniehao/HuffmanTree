@@ -77,7 +77,6 @@ public class Driver {
     }
     System.out.println("4. Choose the method to write the decoded message: ");
     int writeWayDecode = sc.nextInt();
-    codeOperation.generateHuffmanTree(symbolNum);
     message = codeOperation.decode(message);
     sc.nextLine();
     if (writeWayDecode == 1) {

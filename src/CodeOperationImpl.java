@@ -24,6 +24,7 @@ public class CodeOperationImpl implements CodeOperation {
     }
     prefixMap = new HashMap<>();
     generateDictionary(message, symbolNum);
+    generateHuffmanTree(symbolNum);
   }
 
   /**
@@ -124,9 +125,11 @@ public class CodeOperationImpl implements CodeOperation {
     return freqMap;
   }
 
-  @Override
-  public void generateHuffmanTree(int SymbolNum) {
-    HuffmanTree tree = new HuffmanTree(SymbolNum);
+  /**
+   * Generate the Huffman tree from the prefix code map.
+   */
+  private void generateHuffmanTree(int symbolNum){
+    HuffmanTree tree = new HuffmanTree(symbolNum);
     for (Character c : prefixMap.keySet()) {
       tree.insert(c, prefixMap.get(c));
     }
@@ -134,15 +137,18 @@ public class CodeOperationImpl implements CodeOperation {
   }
 
   @Override
-  public String decode(String codeStr) {
+  public String decode(String codeStr) throws IllegalArgumentException {
     return tree.lookUp(codeStr);
   }
 
   @Override
-  public String encode(String uncodeStr) {
+  public String encode(String uncodeStr) throws IllegalArgumentException {
     String ans = "";
     for (int i = 0; i < uncodeStr.length(); i++) {
       char key = uncodeStr.charAt(i);
+      if (!prefixMap.containsKey(key)) {
+        throw new IllegalArgumentException("The character is invalid!");
+      }
       ans += prefixMap.get(key);
     }
     return ans;
@@ -165,10 +171,6 @@ public class CodeOperationImpl implements CodeOperation {
     for (Character key: prefixMap.keySet()) {
       if (key == ' ') {
         sb.append("sp").append(": ").append(prefixMap.get(key)).append(", ");
-        continue;
-      }
-      else if (key == '\n') {
-        sb.append("\n").append(": ").append(prefixMap.get(key)).append(", ");
         continue;
       } else {
         sb.append(key).append(": ").append(prefixMap.get(key)).append(", ");

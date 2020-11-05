@@ -3,7 +3,8 @@
  * prefix code or insert a prefix code to the tree's root.
  */
 public class HuffmanTree {
-  Node root;
+  private Node root;
+  private int symbolNum;
 
   /**
    * Constructor for the HuffmanTree.
@@ -12,6 +13,7 @@ public class HuffmanTree {
    */
   public HuffmanTree(int symbolNum) {
     root = new trieLeafNode(null, symbolNum);
+    this.symbolNum = symbolNum;
   }
 
   /**
@@ -30,17 +32,27 @@ public class HuffmanTree {
    * @param codeStr The coded string.
    * @return The decoded normal string.
    */
-  public String lookUp(String codeStr) {
+  public String lookUp(String codeStr) throws IllegalArgumentException {
     String rst = "";
     Node currNode = root;
     for (int i = 0; i < codeStr.length(); i++) {
+      int index = ConvertToDecimal.convert(codeStr.charAt(i));
+      if (index >= symbolNum) {
+        throw new IllegalArgumentException("The input string is invalid!");
+      }
       Node child = currNode.getChildNode(ConvertToDecimal.convert(codeStr.charAt(i)));
+      if (child == null) {
+        throw new IllegalArgumentException("The input string is invalid!");
+      }
       if (child instanceof trieLeafNode) {
         rst += child.getData();
         currNode = root;
       } else {
         currNode = child;
       }
+    }
+    if(!currNode.equals(root)) {
+      throw new IllegalArgumentException("The input string is invalid!");
     }
     return rst;
   }

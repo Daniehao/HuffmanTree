@@ -1,5 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class CodeOperationTest {
   }
 
   @Test
-  public void testConstructor(){
+  public void testConstructor() {
     codeOperation = new CodeOperationImpl("For here or to go?", 2);
     assertEquals(true, true);
   }
@@ -123,24 +124,66 @@ public class CodeOperationTest {
   }
 
   @Test
-  public void testDecode(){
-    codeOperation.generateHuffmanTree(2);
-  assertEquals("For here?",
-          codeOperation.decode("111111011000011101011001011110"));
+  public void testEncodeEmpty() {
+    assertEquals("",
+            codeOperation3.encode(""));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testEncodeInvalid() {
+    codeOperation.encode("aaa!");
+    codeOperation.encode("bbb!");
+    codeOperation.encode("ccc!");
+  }
+
+  @Test
+  public void testDecode() {
+    assertEquals("For here?",
+            codeOperation.decode("111111011000011101011001011110"));
   }
 
   @Test
   public void testDecode2() {
-    codeOperation2.generateHuffmanTree(3);
     assertEquals("For here?",
             codeOperation2.decode("2011212200022102200"));
   }
 
   @Test
-  public void testDecode3(){
-    codeOperation3.generateHuffmanTree(16);
+  public void testDecode3() {
     assertEquals("fo he!",
             codeOperation3.decode("3823c313a30"));
+  }
+
+  @Test
+  public void testDecodeEmpty() {
+    assertEquals("",
+            codeOperation3.decode(""));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testDecodeInvalid() {
+    codeOperation.decode("11100");
+    codeOperation.decode("xxx11100");
+    codeOperation.decode("00~~");
+    codeOperation2.decode("0011");
+    codeOperation3.decode("5f9c");
+  }
+
+  @Test
+  public void testEncodeDecode() {
+    String encoded = codeOperation.encode("For here or to go?");
+    String decoded = codeOperation.decode(encoded);
+    assertEquals("For here or to go?", decoded);
+  }
+
+  @Test
+  public void testEncodeDecode2() {
+    CodeOperation codeOperation4 = new CodeOperationImpl("I am a apple, pear, banana," +
+            " green grape, red grape, orange, tomato, carrot, brocolli, kale, pineapple, pear, and"
+            + " so on!", 16);
+    String encoded = codeOperation4.encode("I am a apple, pear, banana!");
+    String decoded = codeOperation4.decode(encoded);
+    assertEquals("I am a apple, pear, banana!", decoded);
   }
 
   @Test

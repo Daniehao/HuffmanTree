@@ -7,11 +7,6 @@ import java.util.Map;
 public interface CodeOperation {
 
   /**
-   * Generate the Huffman tree from the prefix code map.
-   */
-  public void generateHuffmanTree(int SymbolNum);
-
-  /**
    * Decode a coded string to a normal string with characters.
    *
    * @param codeStr The coded string.
