@@ -1,5 +1,5 @@
 /**
- * Class for the leaf Node of prefix tree which implements the Node interface.
+ * Class for the leaf Node of the Huffman tree which implements the Node interface.
  */
 public class trieLeafNode implements Node {
   private Character data;

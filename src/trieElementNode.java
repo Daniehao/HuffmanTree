@@ -1,5 +1,5 @@
 /**
- * Class for the non-leaf Node of prefix tree which implements the Node interface.
+ * Class for the non-leaf Node of Huffman tree which implements the Node interface.
  */
 public class trieElementNode implements Node {
   private Node[] children;

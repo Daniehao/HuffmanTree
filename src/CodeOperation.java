@@ -1,15 +1,15 @@
 import java.util.Map;
 
 /**
- * The interface includes operations to generate code dictionary and prefix tree and also it has
+ * The interface includes operations to generate code dictionary and Huffman tree and also it has
  * decode and encode operations with a input string.
  */
 public interface CodeOperation {
 
   /**
-   * Generate the prefix tree from the prefix code map.
+   * Generate the Huffman tree from the prefix code map.
    */
-  public void generatePrefixTree(int SymbolNum);
+  public void generateHuffmanTree(int SymbolNum);
 
   /**
    * Decode a coded string to a normal string with characters.

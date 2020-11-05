@@ -10,7 +10,7 @@ import javafx.util.Pair;
  */
 public class CodeOperationImpl implements CodeOperation {
   private Map<Character, String> prefixMap;
-  private PrefixTree tree;
+  private HuffmanTree tree;
 
   /**
    * Constructor for the CodeOperationImpl class.
@@ -107,8 +107,8 @@ public class CodeOperationImpl implements CodeOperation {
   }
 
   @Override
-  public void generatePrefixTree(int SymbolNum) {
-    PrefixTree tree = new PrefixTree(SymbolNum);
+  public void generateHuffmanTree(int SymbolNum) {
+    HuffmanTree tree = new HuffmanTree(SymbolNum);
     for (Character c : prefixMap.keySet()) {
       tree.insert(c, prefixMap.get(c));
     }

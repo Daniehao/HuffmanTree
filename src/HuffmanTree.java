@@ -1,21 +1,21 @@
 /**
- * Class to implement operations on prefix tree, for example, look up the character by given the
+ * Class to implement operations on Huffman tree, for example, look up the character by given the
  * prefix code or insert a prefix code to the tree's root.
  */
-public class PrefixTree {
+public class HuffmanTree {
   Node root;
 
   /**
-   * Constructor for the PrefixTree.
+   * Constructor for the HuffmanTree.
    *
    * @param symbolNum The total number of symbols.
    */
-  public PrefixTree(int symbolNum) {
+  public HuffmanTree(int symbolNum) {
     root = new trieLeafNode(null, symbolNum);
   }
 
   /**
-   * Insert one of the codes into the prefix tree.
+   * Insert one of the codes into the Huffman tree.
    *
    * @param c    The current character to be inserted.
    * @param code The string of code.

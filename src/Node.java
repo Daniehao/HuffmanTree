@@ -1,6 +1,6 @@
 /**
  * The Node interface that has method to add element and has method to return the in order string of
- * the prefix tree.
+ * the Huffman tree.
  */
 public interface Node {
   /**
@@ -34,7 +34,7 @@ public interface Node {
   public char getData();
 
   /**
-   * Use the deepeast-first search to traverse the prefix tree.
+   * Use the deepeast-first search to traverse the Huffman tree.
    * @param sb The string builder to store the leaves that have been traversed.
    * @param currPath The string builder to store the whole path from root to leaf.
    */

@@ -11,7 +11,8 @@ public class CodeOperationTest {
 
   @Before
   public void setup() {
-    codeOperation = new CodeOperationImpl("For here or to go?", 2);
+    codeOperation = new CodeOperationImpl("For here or to go?",
+            2);
   }
 
   @Test
@@ -65,7 +66,7 @@ public class CodeOperationTest {
 
   @Test
   public void testDecode(){
-    codeOperation.generatePrefixTree(2);
+    codeOperation.generateHuffmanTree(2);
     codeOperation.decode("011111010011000000111001001100010011110");
   assertEquals("For here?",
           codeOperation.decode("011111010011000000111001001100010011110"));
