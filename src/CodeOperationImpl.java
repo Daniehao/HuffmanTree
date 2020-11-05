@@ -50,9 +50,17 @@ public class CodeOperationImpl implements CodeOperation {
         newValue += curr.getValue();
         for (char c : currStr.toCharArray()) {
           if (!prefixMap.containsKey(c)) {
-            prefixMap.put(c, "" + i);
+            if (i > 9) {
+              prefixMap.put(c, "" + ConvertToDecimal.convertToChar(i));
+            } else {
+              prefixMap.put(c, "" + i);
+            }
           } else {
-            prefixMap.put(c, "" + i + prefixMap.get(c));
+            if (i > 9) {
+              prefixMap.put(c, "" + ConvertToDecimal.convertToChar(i) + prefixMap.get(c));
+            } else {
+              prefixMap.put(c, "" + i + prefixMap.get(c));
+            }
           }
         }
       }
@@ -60,14 +68,24 @@ public class CodeOperationImpl implements CodeOperation {
       queue.offer(pair);
     }
     int n = queue.size();
-    for (int i = 0; i < n; i++) {
-      Pair<String, Integer> pair = queue.poll();
-      String currStr = pair.getKey();
-      for (char c : currStr.toCharArray()) {
-        if (!prefixMap.containsKey(c)) {
-          prefixMap.put(c, "" + i);
-        } else {
-          prefixMap.put(c, "" + i + prefixMap.get(c));
+    if (n != 1) {
+      for (int i = 0; i < n; i++) {
+        Pair<String, Integer> pair = queue.poll();
+        String currStr = pair.getKey();
+        for (char c : currStr.toCharArray()) {
+          if (!prefixMap.containsKey(c)) {
+            if (i > 9) {
+              prefixMap.put(c, "" + ConvertToDecimal.convertToChar(i));
+            } else {
+              prefixMap.put(c, "" + i);
+            }
+          } else {
+            if (i > 9) {
+              prefixMap.put(c, "" + ConvertToDecimal.convertToChar(i) + prefixMap.get(c));
+            } else {
+              prefixMap.put(c, "" + i + prefixMap.get(c));
+            }
+          }
         }
       }
     }
