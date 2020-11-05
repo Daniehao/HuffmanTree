@@ -142,4 +142,12 @@ public class CodeOperationTest {
     assertEquals("fo he!",
             codeOperation3.decode("3823c313a30"));
   }
+
+  @Test
+  public void testGetPrefixCoding() {
+    System.out.println(codeOperation.getPrefixCoding());
+    assertEquals("The following shows the prefix code for each character in the message\n"
+                    + "sp: 00, r: 110, t: 1110, e: 010, F: 11111, g: 0110, h: 0111, ?: 11110, o: 10",
+            codeOperation.getPrefixCoding());
+  }
 }

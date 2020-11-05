@@ -157,6 +157,26 @@ public class CodeOperationImpl implements CodeOperation {
   public Map<String, Integer> getFreqMap(String message) {
     return generateFrequencyMap(message);
   }
+
+  @Override
+  public String getPrefixCoding() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("The following shows the prefix code for each character in the message").append("\n");
+    for (Character key: prefixMap.keySet()) {
+      if (key == ' ') {
+        sb.append("sp").append(": ").append(prefixMap.get(key)).append(", ");
+        continue;
+      }
+      else if (key == '\n') {
+        sb.append("\n").append(": ").append(prefixMap.get(key)).append(", ");
+        continue;
+      } else {
+        sb.append(key).append(": ").append(prefixMap.get(key)).append(", ");
+      }
+    }
+    sb.delete(sb.length() - 2, sb.length());
+    return sb.toString();
+  }
 }
 
 

@@ -24,6 +24,7 @@ public class Driver {
     System.out.println("Step 4: Input 0 for writing decoded message to screen, 1 for writing " +
             "the decoded message into a new file. Input your file name if you choose " +
             "to write decoded message to a new file.");
+    System.out.println("Step 5: Input the file name for the prefix encoding text file.");
     System.out.print("\n");
     System.out.print("\n");
   }
@@ -69,8 +70,8 @@ public class Driver {
     sc.nextLine();
     if (writeWayEncode == 1) {
       System.out.println("Input the file name: ");
-      String path = sc.nextLine();
-      Files.write(Paths.get(path), message.getBytes());
+      String name = sc.nextLine();
+      Files.write(Paths.get(name), message.getBytes());
     } else {
       System.out.println(message);
     }
@@ -81,10 +82,13 @@ public class Driver {
     sc.nextLine();
     if (writeWayDecode == 1) {
       System.out.println("Input the file name: ");
-      String path = sc.nextLine();
-      Files.write(Paths.get(path), message.getBytes());
+      String name = sc.nextLine();
+      Files.write(Paths.get(name), message.getBytes());
     } else {
       System.out.println(message);
     }
+    System.out.println("5. Input the file name of the prefix encoding: ");
+    String name = sc.nextLine();
+    Files.write(Paths.get(name), codeOperation.getPrefixCoding().getBytes());
   }
 }

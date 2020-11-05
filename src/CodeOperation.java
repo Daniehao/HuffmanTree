@@ -38,4 +38,10 @@ public interface CodeOperation {
    * @return The frequency map of each character in the input message.
    */
   public Map<String, Integer> getFreqMap(String message);
+
+  /**
+   * Return the string of the prefix coding.
+   * @return The string of the prefix coding.
+   */
+  public String getPrefixCoding();
 }
