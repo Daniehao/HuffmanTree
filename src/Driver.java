@@ -61,8 +61,8 @@ public class Driver {
     sc.nextLine();
     CodeOperation codeOperation = new CodeOperationImpl(message, symbolNum);
     System.out.println("3. Choose the method to write the encoded message: ");
-    message = codeOperation.encode(message);
     int writeWayEncode = sc.nextInt();
+    message = codeOperation.encode(message);
     sc.nextLine();
     if (writeWayEncode == 1) {
       System.out.println("Input the path file for this new file: ");
@@ -71,9 +71,10 @@ public class Driver {
     } else {
       System.out.println(message);
     }
-    System.out.println("4. Choose the method to write the encoded message: ");
-    message = codeOperation.decode(message);
+    System.out.println("4. Choose the method to write the decoded message: ");
     int writeWayDecode = sc.nextInt();
+    codeOperation.generateHuffmanTree(symbolNum);
+    message = codeOperation.decode(message);
     sc.nextLine();
     if (writeWayDecode == 1) {
       System.out.println("Input the path file for this new file: ");
