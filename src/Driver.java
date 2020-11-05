@@ -25,10 +25,10 @@ public class Driver {
     System.out.println("Step 4: Decode message.");
     System.out.print("\n");
     System.out.print("\n");
-    System.out.print("\n");
   }
 
   public static void main(String[] args) throws URISyntaxException, IOException {
+    instruction();
     Scanner sc = new Scanner(System.in);
     String message = "";
     int symbolNum = 0;
@@ -48,7 +48,7 @@ public class Driver {
     if (readWay == 0) {
       System.out.println(message);
     } else {
-      System.out.println("Input the file name: ");
+      System.out.println("Input the existing file name: ");
       String fileName = sc.nextLine();
       StringBuilder sb = new StringBuilder();
       try (Stream<String> stream = Files.lines(Paths.get(fileName), StandardCharsets.UTF_8)) {
@@ -67,7 +67,7 @@ public class Driver {
     message = codeOperation.encode(message);
     sc.nextLine();
     if (writeWayEncode == 1) {
-      System.out.println("Input the path file for this new file: ");
+      System.out.println("Input the file name: ");
       String path = sc.nextLine();
       Files.write(Paths.get(path), message.getBytes());
     } else {
@@ -79,7 +79,7 @@ public class Driver {
     message = codeOperation.decode(message);
     sc.nextLine();
     if (writeWayDecode == 1) {
-      System.out.println("Input the path file for this new file: ");
+      System.out.println("Input the file name: ");
       String path = sc.nextLine();
       Files.write(Paths.get(path), message.getBytes());
     } else {
