@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -14,20 +13,22 @@ import java.util.stream.Stream;
 public class Driver {
   public static void instruction() {
     System.out.println("Instructions by the following: ");
-    System.out.println("Step 0: Input 0 for writing message to screen, 1 for building a new file" +
-            "to write a message. Input message for writing in keyboard; Input your file path and " +
-            "message if you choose to write message in a new file.");
+    System.out.println("Step 0: Input 0 for writing message to screen, 1 for building a new file"
+            + "to write a message. Input the message content. Input your file name if choose to "
+            + "write a new file.");
     System.out.println("Step 1: Input 0 for reading from keyboard, 1 for reading from file.");
     System.out.println("Step 2: Input 2 for binary encoding, 16 for hexadecimal encoding.");
-    System.out.println("Step 3: 0: Input 0 for writing encoded message to screen, 1 for writing " +
-            "the encoded message into a new file. Input your file path if you choose " +
+    System.out.println("Step 3: Input 0 for writing encoded message to screen, 1 for writing " +
+            "the encoded message into a new file. Input your file name if you choose " +
             "to write encoded message to a new file.");
-    System.out.println("Step 4: Decode message.");
+    System.out.println("Step 4: Input 0 for writing decoded message to screen, 1 for writing " +
+            "the decoded message into a new file. Input your file name if you choose " +
+            "to write decoded message to a new file.");
     System.out.print("\n");
     System.out.print("\n");
   }
 
-  public static void main(String[] args) throws URISyntaxException, IOException {
+  public static void main(String[] args) throws IOException {
     instruction();
     Scanner sc = new Scanner(System.in);
     String message = "";
