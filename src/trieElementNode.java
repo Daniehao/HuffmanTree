@@ -31,6 +31,7 @@ public class trieElementNode implements Node {
     return this;
   }
 
+  @Override
   public void addChildren(int index, Node child) {
     children[index] = child;
   }
@@ -41,8 +42,8 @@ public class trieElementNode implements Node {
   }
 
   @Override
-  public Character getData() {
-    return null;
+  public char getData() {
+    return (char)0;
   }
 
   @Override

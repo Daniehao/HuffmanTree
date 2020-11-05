@@ -39,7 +39,7 @@ public class trieLeafNode implements Node {
   }
 
   @Override
-  public Character getData() {
+  public char getData() {
     return data;
   }
 
