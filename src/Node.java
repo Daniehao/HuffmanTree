@@ -9,7 +9,7 @@ public interface Node {
    * @param symbol The data of the new node to be added.
    * @return The current node.
    */
-  Node add(Character symbol, String code, int position);
+  public Node add(Character symbol, String code, int position);
 
   /**
    * Add a child node to a specific position based on the character value in the current prefix.

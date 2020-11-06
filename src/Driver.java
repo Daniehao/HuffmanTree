@@ -17,7 +17,7 @@ public class Driver {
   public static void instruction() {
     System.out.println("Instructions by the following: ");
     System.out.println("Step 0: Input 0 for writing message to screen, 1 for building a new file"
-            + "to write a message. Input the message content. Input your file name if choose to "
+            + " to write a message. Input the message content. Input your file name if choose to "
             + "write a new file.");
     System.out.println("Step 1: Input 0 for reading from keyboard, 1 for reading from file.");
     System.out.println("Step 2: Input 2 for binary encoding, 16 for hexadecimal encoding.");
