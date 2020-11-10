@@ -4,7 +4,8 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Test for the Node interface to check if
+ * Test for the Node interface to check the correctness of the TrieElementNode constructor, the
+ * TrieLeafNode constructor, add method, as well as the addChildren method.
  */
 public class NodeTest {
   Node leaf;
@@ -37,5 +38,12 @@ public class NodeTest {
     root.addChildren(1, child);
     assertEquals(child, root.getChildNode(1));
     assertEquals('x', root.getChildNode(1).getData());
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testAddInvalid() {
+    Node node = new TrieElementNode(2);
+    node.add('a', "10", 1);
+    node.add('a', "101", 1);
   }
 }

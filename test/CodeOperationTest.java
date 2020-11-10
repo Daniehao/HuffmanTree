@@ -6,6 +6,11 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * This class checks the correctness of the methods in the CodeOperation interface as well as the
+ * CodeOperationImpl class. It includes tests on the correctness on CodeOperationImpl constructor,
+ * the prefix map, the frequency map, encoding result, decoding result, and prefix coding.
+ */
 public class CodeOperationTest {
   private CodeOperation codeOperation;
   private CodeOperation codeOperation2;
@@ -17,8 +22,8 @@ public class CodeOperationTest {
             2);
     codeOperation2 = new CodeOperationImpl("For here or to go?",
             3);
-    codeOperation3 = new CodeOperationImpl("abc abcd abcde abcedfg abcdefghijk " +
-            "lllllmnoooooopppppq!",
+    codeOperation3 = new CodeOperationImpl("abc abcd abcde abcedfg abcdefghijk "
+            + "lllllmnoooooopppppq!",
             16);
   }
 
@@ -27,6 +32,13 @@ public class CodeOperationTest {
     codeOperation = new CodeOperationImpl("For here or to go?", 2);
     Map<Character, String> map = new HashMap<>();
     assertEquals("For here or to go?", codeOperation.getMessage());
+  }
+
+  @Test
+  public void testConstructor2() {
+    codeOperation = new CodeOperationImpl("", 2);
+    Map<Character, String> map = new HashMap<>();
+    assertEquals("", codeOperation.getMessage());
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -191,7 +203,7 @@ public class CodeOperationTest {
   public void testGetPrefixCoding() {
     System.out.println(codeOperation.getPrefixCoding());
     assertEquals("The following shows the prefix code for each character in the message\n"
-                    + "sp: 00, r: 110, t: 1110, e: 010, F: 11111, g: 0110, h: 0111, ?: 11110, o: 10",
-            codeOperation.getPrefixCoding());
+            + "sp: 00, r: 110, t: 1110, e: 010, F: 11111, g: 0110, h: 0111, ?: 11110," +
+            " o: 10", codeOperation.getPrefixCoding());
   }
 }

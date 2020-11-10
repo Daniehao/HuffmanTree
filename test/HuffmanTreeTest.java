@@ -3,6 +3,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * This class checks the correctness of the huffmanTree constructor, insert method, and the
+ * lookup method.
+ */
 public class HuffmanTreeTest {
   HuffmanTree huffmanTree1;
   HuffmanTree huffmanTree2;

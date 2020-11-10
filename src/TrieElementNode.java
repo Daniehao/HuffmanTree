@@ -19,10 +19,12 @@ public class TrieElementNode implements Node {
   }
 
   @Override
-  public Node add(Character symbol, String code, int position) {
+  public Node add(Character symbol, String code, int position) throws IllegalArgumentException {
     Node node;
     if (children[ConvertToDecimal.convert(code.charAt(position))] == null) {
       node = new TrieLeafNode(null, symbolNum);
+    } else if (children[ConvertToDecimal.convert(code.charAt(position))] instanceof TrieLeafNode) {
+      throw new IllegalArgumentException("The prefix code is invalid!");
     } else {
       node = children[ConvertToDecimal.convert(code.charAt(position))];
     }
